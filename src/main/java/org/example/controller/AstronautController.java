@@ -2,7 +2,10 @@ package org.example.controller;
 
 import org.example.model.Astronaut;
 import org.example.model.AstronautStatus;
+import org.example.model.MissionEvent;
+import org.example.model.Supply;
 import org.example.service.AstronautService;
+import org.example.service.MissionEventService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -60,23 +63,23 @@ public class AstronautController {
         }
     }
 
-/*
+
 
     //AUFGABE  6 --------------------------------------------------------------------------------
-    public void printAstronautRanking(List<TrafficEvent> events, List<Fine> fines, TrafficEventService eventService) {
+    public void printAstronautRanking(List<MissionEvent> events, List<Supply> supplies, MissionEventService eventService) {
         List<Astronaut> allAstronauts = service.getAlLAstronauts();
 
         // Sortăm vehiculele conform cerinței
         List<Astronaut> sortedAstronauts = allAstronauts.stream()
                 .sorted((v1, v2) -> {
-                    int risk1 = service.calculateTotalRisk(v1, events, fines, eventService);
-                    int risk2 = service.calculateTotalRisk(v2, events, fines, eventService);
+                    int score1 = service.calculateTotalScore(v1, events, supplies, eventService);
+                    int score2 = service.calculateTotalScore(v2, events, supplies, eventService);
 
-                    if (risk1 != risk2) {
-                        return Integer.compare(risk1, risk2); // 1. Risk crescător
+                    if (score1 != score2) {
+                        return Integer.compare(score2, score1); // 1. Score crescător
                     }
                     // 2. License Plate descrescător la egalitate
-                    return v2.getLicensePlate().compareTo(v1.getLicensePlate());
+                    return v1.getName().compareTo(v2.getName());
                 })
                 .toList();
 
@@ -84,16 +87,16 @@ public class AstronautController {
         System.out.println("Top 5 Astronauts:");
         for (int i = 0; i < Math.min(5, sortedAstronauts.size()); i++) {
             Astronaut v = sortedAstronauts.get(i);
-            int score = service.calculateTotalRisk(v, events, fines, eventService);
-            System.out.println((i + 1) + ". " + v.getLicensePlate() + " -> " + score);
+            int score = service.calculateTotalScore(v, events, supplies, eventService);
+            System.out.println((i + 1) + ". " + v.getName() + " -> " + score);
         }
 
         // Cel mai sigur vehicul este primul din lista deja sortată crescător după risc
         if (!sortedAstronauts.isEmpty()) {
             Astronaut safest = sortedAstronauts.get(0);
-            int safestScore = service.calculateTotalRisk(safest, events, fines, eventService);
-            System.out.println("\nSafest astronaut: " + safest.getLicensePlate() + " -> " + safestScore);
+            int safestScore = service.calculateTotalScore(safest, events, supplies, eventService);
+            System.out.println("\nSafest astronaut: " + safest.getName() + " -> " + safestScore);
         }
     }
-*/
+
 }

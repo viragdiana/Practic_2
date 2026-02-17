@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.Astronaut;
 import org.example.model.AstronautStatus;
+import org.example.model.MissionEvent;
+import org.example.model.Supply;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,22 +49,22 @@ public class AstronautService {
                         .thenComparing(Comparator.comparing(Astronaut::getName)))
                 .collect(Collectors.toList());
     }
-/*
+
     //AUFGABE 6 ----------------------------------------------------------------------------------------
-    public int calculateTotalRisk(Astronaut v, List<TrafficEvent> events, List<Fine> fines, TrafficEventService eventService) {
+    public int calculateTotalScore(Astronaut v, List<MissionEvent> events, List<Supply> fines, MissionEventService eventService) {
         // 1. Suma severității calculate din evenimente
-        int totalEventRisk = events.stream()
+        int totalEventScore = events.stream()
                 .filter(e -> e.getAstronautId() == v.getId())
                 .mapToInt(eventService::computedPoints)
                 .sum();
 
         // 2. Suma amenzilor primite
-        int totalFines = fines.stream()
+        int totalSupplys= fines.stream()
                 .filter(f -> f.getAstronautId() == v.getId())
-                .mapToInt(Fine::getAmount)
+                .mapToInt(Supply::getValue)
                 .sum();
 
-        return totalEventRisk - totalFines;
+        return totalEventScore - totalSupplys;
     }
-    */
+    
 }

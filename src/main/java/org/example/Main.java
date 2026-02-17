@@ -26,8 +26,8 @@ public class Main {
         MissionEventController missionEventController = new MissionEventController(missionEventService);
 
         //supplies
-        SupplyService fineService = new SupplyService();
-        SupplyController fineController = new SupplyController(fineService);
+        SupplyService supplyService = new SupplyService();
+        SupplyController supplyController = new SupplyController(supplyService);
 
 
 
@@ -45,12 +45,12 @@ public class Main {
             //Incarc datele Astronauts, ereignissen, geschanken din json
             astronautController.loadAstronauts(astronautsFilePath);
             missionEventController.loadMissionEvents(missionEventsFilepath);
-            fineController.loadSupplys(suppliesFilePath);
+            supplyController.loadSupplys(suppliesFilePath);
 
             //afisam nr de Astronauts, ereignissen, geschanken
             System.out.println("Astronauts loaded: " + astronautController.getNumbersOfAstronauts());
             System.out.println("MissionEvents loaded: " + missionEventController.getNumberOfMissionEvents());
-            System.out.println("Supplys loaded: " + fineController.getNumberOfSupplys());
+            System.out.println("Supplys loaded: " + supplyController.getNumberOfSupplys());
 
 
             //afisam toate tributele cu formatarea ceruta
@@ -111,17 +111,17 @@ public class Main {
             List<MissionEvent> missionEvents = missionEventController.getAlLMissionEvents();
             missionEventController.computefisrtFiveEvents(missionEvents);
 
-/*
+
             //AUFGABE 6------------------------------------------------------------------------------------------------------------
             System.out.println("AUFGABE 6 ------------------------------------");
             astronautController.printAstronautRanking(
                     missionEventController.getAlLMissionEvents(),
-                    fineController.getAlLSupplys(),
+                    supplyController.getAlLSupplys(),
                     missionEventService
             );
 
 
-*/
+
             //AUFGABE 7------------------------------------------------------------------------------------------------------------
             System.out.println("AUFGABE 7 ------------------------------------");
             try {
